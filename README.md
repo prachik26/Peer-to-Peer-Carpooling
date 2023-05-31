@@ -4,7 +4,7 @@ The project is created using  HTML, CSS, JavaScript, Python, Django and MySQL.
 For the project to run, we need to install Python 3.8 version with MySQL's latest version.
 The IDE used for the project is VS Code.
 Steps for running the project:
-1. Open the Major 2 folder in VS Code.
+1. Open the Peer-to-Peer Carpooling folder in VS Code.
 2. Create an environment for the project by opening command prompt in the VS Code and run the following commands for activating the environment:
    * python -m venv env
    * .\env\Scripts\activate
@@ -15,8 +15,7 @@ Steps for running the project:
    * pip install mysql-connector-python
    * pip install pillow
    * pip install pymysql
-4. After installing all these libraries, we need to create a database in mysql and give it's details to the settings.py file in Major 2>carpool>carpool folder. The same details
-   should be added in the views.py file in Major 2>carpool>website folder.
+4. After installing all these libraries, we need to create a database in mysql and give it's details to the settings.py file in Peer-to-Peer Carpooling>carpool>carpool folder. The same details should be added in the views.py file in Major 2>carpool>website folder.
 5. Ater creating the database, run the following commands to run the server of Django:
    * cd carpool
    * python manage.py makemigrations
