@@ -1,6 +1,67 @@
 # Peer-to-Peer-Carpooling
 
 The project is created using  HTML, CSS, JavaScript, Python, Django and MySQL. 
+
+![image](https://github.com/prachik26/Peer-to-Peer-Carpooling/assets/83691953/1ff01920-17a4-4ce5-8a0e-de7b2f26aba0)
+
+
+
+![image](https://github.com/prachik26/Peer-to-Peer-Carpooling/assets/83691953/15d49f14-4368-426c-a6bc-0e999d9ea00d)
+
+
+
+![image](https://github.com/prachik26/Peer-to-Peer-Carpooling/assets/83691953/0a7ca281-bf66-477d-af32-01194de97023)
+
+
+
+![image](https://github.com/prachik26/Peer-to-Peer-Carpooling/assets/83691953/d2c30fac-7055-41da-9002-13f1542e1267)
+
+
+
+![image](https://github.com/prachik26/Peer-to-Peer-Carpooling/assets/83691953/d0b941b3-b94f-4477-b0c4-303fbe596438)
+
+
+
+![image](https://github.com/prachik26/Peer-to-Peer-Carpooling/assets/83691953/8d33dfc5-9752-40da-a7e3-e15228585234)
+
+
+
+![image](https://github.com/prachik26/Peer-to-Peer-Carpooling/assets/83691953/c1f68488-b9c3-4dba-a04d-224d8e8dc56e)
+
+
+
+![image](https://github.com/prachik26/Peer-to-Peer-Carpooling/assets/83691953/cd7fed28-2d66-4561-a10e-be0ab3c4d57b)
+
+
+
+![image](https://github.com/prachik26/Peer-to-Peer-Carpooling/assets/83691953/c20cc281-1d99-417c-bb2b-503f5181840e)
+
+
+
+![image](https://github.com/prachik26/Peer-to-Peer-Carpooling/assets/83691953/37eeafe0-332f-421c-a81c-50e93d4fa331)
+
+
+
+![image](https://github.com/prachik26/Peer-to-Peer-Carpooling/assets/83691953/21c02b47-f7b5-4a5b-9e6c-5eb66554e5a3)
+
+
+
+![image](https://github.com/prachik26/Peer-to-Peer-Carpooling/assets/83691953/735123a5-d19e-4f3e-b992-2eef6d82fdf1)
+
+
+
+![image](https://github.com/prachik26/Peer-to-Peer-Carpooling/assets/83691953/cd32c77d-1b11-4c1e-b4fd-6558db0c450a)
+
+
+
+![image](https://github.com/prachik26/Peer-to-Peer-Carpooling/assets/83691953/04eaaddb-9d9f-435b-b520-f9f6551178d2)
+
+
+
+![image](https://github.com/prachik26/Peer-to-Peer-Carpooling/assets/83691953/c0eebf8a-1158-4e71-b9dc-3c9c1b950a21)
+
+
+
 For the project to run, we need to install Python 3.8 version with MySQL's latest version.
 The IDE used for the project is VS Code.
 Steps for running the project:
