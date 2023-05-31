@@ -1,0 +1,65 @@
+body{
+
+    justify-content: center;
+    align-items: center;
+
+    background-color: #f2f1f8;
+  }
+
+  .addcar h3{
+    font-size: 32px;
+font-weight: 800;
+line-height: 50px;
+text-align: center;
+/* background-color: #07411a; */
+color: #7d7d81;
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+
+ 
+
+  .addcar{
+
+    height: 800px;
+    width: 700px;
+    margin-left:25% ;
+    margin-top: 4%;
+    margin-bottom: 5%;
+    background-color: #fff;
+    padding: 25px 30px;
+    border-radius: 5px;
+    box-shadow: 0 0 40px rgba(8,7,16,0.6);
+
+
+
+
+  }
+
+  div.settings {
+      display:grid;
+      grid-template-columns: max-content max-content;
+      grid-gap:5px;
+  }
+  div.settings label       { text-align:right; }
+  div.settings label:after { content: ":"; }
+
+  button{
+  margin-top: 20px;
+  width: 100%;
+  background-color: #09333f;
+  color: white;
+  padding: 15px 0;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.addcar input{
+  width:500px;
+}
+
+.addcar select{
+  width:500px;
+}
