@@ -1,0 +1,147 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard </title>
+    <link rel="stylesheet" href="{% static 'styles/registration.css'%}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Kalam' rel='stylesheet'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/home.css'%}">
+    <script src="{% static 'js/home.js'%}"></script>
+    <style>
+        .body {
+            background: rgb(236, 230, 230);
+        }
+
+        .dashboard1 {
+            width: 100%;
+            background: #a2c7e6;
+            color: white;
+            margin-top: -8px;
+            padding: 10px;
+        }
+
+        .circles {
+            width: 170px;
+            height: 170px;
+            line-height: 120px;
+            border-radius: 50%;
+            font-size: 50px;
+            color: #fff;
+            text-align: center;
+            background: #000;
+            display: inline-blocks;
+            margin-right: 60px;
+            /* margin-left: 40px; */
+            word-wrap: break-word;
+            float: left;
+        }
+
+        .circles:hover {
+            background: #9c9898;
+        }
+
+        .circles a {
+            text-decoration: none;
+            color: white;
+            font-size: medium;
+        }
+
+        .dashboard {
+            /* width:100%; */
+            height: 300px;
+            padding: 50px;
+            margin-top: 50px;
+            margin-bottom: 10px;
+
+        }
+
+        .cssanimation, .cssanimation span {
+        animation-duration: 0.8s;
+        animation-fill-mode: both;
+        }
+
+        .cssanimation span { display: inline-block }
+
+        .fadeInBottom { animation-name: fadeInBottom }
+        @keyframes fadeInBottom {
+        from {
+            opacity: 0;
+            transform: translateY(100%);
+        }
+        to { opacity: 1 }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="topnav" id="myTopnav">
+        <ul>
+            <div id="name">
+                <h1>Car Pooling System</h1>
+            </div>
+        </ul>
+        <ul id="rest">
+            {% if user.is_authenticated %}
+            <ul><a href="{% url 'home' %}" class="active">Home</a></ul>
+            <ul><a href="{% url 'searchmycar' %}">Book Your Car</a></ul>
+            <ul><a href="{% url 'dashboard' %}">Dashboard</a></ul>
+            <ul><a href="{% url 'allcars' %}">Cars</a></ul>
+            <ul><a href="{% url 'mycar_list' %}">My Cars</a></ul>
+            <ul><a href="{% url 'logout' %}">Logout</a></ul>
+            {% endif %}
+        </ul>
+    </div>
+
+    
+    <div class="dashboard1">
+        <h3>DASHBOARD</h3>
+    </div>
+
+    <div class="cssanimation sequence fadeInBottom">
+
+    
+        <div class="dashboard">
+            <div class="circles" style="margin-left: 30px; "><a href="http://127.0.0.1:8000/addmycar">Add My Car</a></div>
+            <div class="circles"><a href="http://127.0.0.1:8000/searchmycar">Book My Ride</a></div>
+            <div class="circles"><a href="http://127.0.0.1:8000/mybookings">My Bookings</a></div>
+            <div class="circles"><a href="http://127.0.0.1:8000/customerbookings">Customer Bookings</a></div>
+            <div class="circles"><a href="http://127.0.0.1:8000/myaccount">My Account</a></div>
+            <div class="circles"><a href="http://127.0.0.1:8000/changepassword">Change Password</a></div>
+    
+        </div>
+
+    </div>
+
+    
+
+
+    <div class="footer">
+        <div class="section1">
+            <h3>Contact us</h3>
+            <i class="fa fa-home">Address No: XXXXXXX Street</i></br>
+            <i class="fa fa-phone">Mobile: 1234567890</i></br>
+            <i class="fa fa-envelope">Email: abc@gmail.com</i></br>
+        </div>
+
+
+        <div class="section1">
+            <h3>Project Links</h3>
+            <a href="{% url 'home' %}">Home</a></br>
+            <a href="{% url 'contact' %}">Contact</a></br>
+            <a href="{% url 'allcars' %}">Cars</a></br>
+            <a href="{% url 'searchmycar' %}">Book</a></br>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

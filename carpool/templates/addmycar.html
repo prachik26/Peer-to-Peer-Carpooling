@@ -1,0 +1,219 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <title>Add my Car Details</title>
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Kalam' rel='stylesheet'>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{% static 'styles/home.css'%}">
+  <link rel="stylesheet" type="text/css" href="{% static 'styles/addcar.css'%}">
+  <script src="{% static 'js/home.js'%}"></script>
+  <!-- <link rel="stylesheet" href="login.css"> -->
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity= "sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
+  <style>
+    .addcar {
+      height: 700px;
+      width: 750px;
+      padding: 30px;
+    }
+
+    /*div.settings {
+        display:grid;
+        grid-template-columns: max-content max-content;
+        grid-gap:5px;
+    }
+    div.settings label       { text-align:right; }
+    div.settings label:after { content: ":"; }
+
+    button{
+    margin-top: 50px;
+    width: 100%;
+    background-color: #09333f;
+    color: white;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .addcar input{
+    width:500px;
+  }
+
+  .addcar select{
+    width:500px;
+  }
+     */
+    /* .addcar form input{
+    margin-left: 20px;
+
+  } */
+
+    .col-25 {
+      float: left;
+      width: 25%;
+      margin-top: 6px;
+    }
+
+    /* Floating column for inputs: 75% width */
+    .col-75 {
+      float: left;
+      width: 75%;
+      margin-top: 6px;
+    }
+
+    .cssanimation, .cssanimation span {
+      animation-duration: 0.8s;
+      animation-fill-mode: both;
+    }
+
+    .cssanimation span { display: inline-block }
+
+    .fadeInBottom { animation-name: fadeInBottom }
+    @keyframes fadeInBottom {
+      from {
+          opacity: 0;
+          transform: translateY(100%);
+      }
+      to { opacity: 1 }
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <div class="topnav" id="myTopnav">
+    <ul>
+      <div id="name">
+        <h1>Car Pooling System</h1>
+      </div>
+    </ul>
+    <ul id="rest">
+      {% if user.is_authenticated %}
+      <ul><a href="{% url 'home' %}" class="active">Home</a></ul>
+      <ul><a href="{% url 'searchmycar' %}">Book Your Car</a></ul>
+      <ul><a href="{% url 'dashboard' %}">Dashboard</a></ul>
+      <ul><a href="{% url 'allcars' %}">Cars</a></ul>
+      <ul><a href="{% url 'mycar_list' %}">My Cars</a></ul>
+      <ul><a href="{% url 'logout' %}">Logout</a></ul>
+      {% endif %}
+
+    </ul>
+  </div>
+
+  <div>
+    {% if messages %}
+    {% for message in messages %}
+
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <center>{{ message }}</center>
+
+    </div>
+    {% endfor %}
+    {% endif %}
+  </div>
+
+  <div class="cssanimation sequence fadeInBottom">
+
+    <div class="addcar">
+      <h3>Enter Journey Details</h3>
+  
+      <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="col-25"><label class="fr">Car Number: </label></div>
+  
+        <div class="col-75"><input type="text" placeholder="AB00CD1234" name="car_num" required=""></div>
+        </br></br>
+  
+        <div class="col-25"><label>Company Name: </label></div>
+        <div class="col-75"><input type="text" placeholder="Company name" name="company" required=""></div>
+        </br></br>
+  
+        <div class="col-25"><label>Car Name: </label></div>
+        <div class="col-75"><input type="text" placeholder="Car Name" name="car_name" required=""></div>
+        </br></br>
+  
+        <div class="col-25">
+          <label>Car Type: </label>
+        </div>
+        <div class="col-75">
+          <select name="car_type" id="cars">
+            <option value="" disabled selected>Select your car type</option>
+            <option value="SUV">SUV</option>
+            <option value="Sedan">Sedan</option>
+            <option value="Hatchback">Hatchback</option>
+            <option value="Crossover SUV">Crossover SUV</option>
+            <option value="Mini Van">Mini Van</option>
+          </select>
+        </div>
+  
+  
+        </br></br>
+  
+        <div class="col-25"><label>From Location: </label></div>
+        <div class="col-75"><input type="text" placeholder="From place" name="from_place" required=""></div>
+        </br></br>
+  
+        <div class="col-25"><label>To Location: </label></div>
+        <div class="col-75"><input type="text" placeholder="To place" name="to_place" required=""></div>
+        </br></br>
+  
+        <div class="col-25"><label>From Date: </label></div>
+        <div class="col-75"><input type="date" placeholder="Start date" name="from_date" required=""></div>
+        </br></br>
+  
+        <div class="col-25"><label>To Date: </label></div>
+        <div class="col-75"><input type="date" placeholder="End date" name="to_date" required=""></div>
+        </br></br>
+  
+        <div class="col-25"><label>Price Per Day: </label></div>
+        <div class="col-75"><input type="text" placeholder="Price" name="price" required=""></div>
+        </br></br>
+  
+        <div class="col-25"><label>Car image: </label></div>
+        <div class="col-75"><input type="file" name="car_img" required=""></div>
+        </br></br>
+  
+        <button>SUBMIT</button></br></br>
+      </form>
+    </div>
+  
+
+  </div>
+
+
+  
+  <div class="footer">
+    <div class="section1">
+      <h3>Contact us</h3>
+      <i class="fa fa-home">Address No: XXXXXXX Street</i></br>
+      <i class="fa fa-phone">Mobile: 1234567890</i></br>
+      <i class="fa fa-envelope">Email: abc@gmail.com</i></br>
+    </div>
+
+
+    <div class="section1">
+      <h3>Project Links</h3>
+      <a href="{% url 'home' %}">Home</a></br>
+      <a href="{% url 'contact' %}">Contact</a></br>
+      <a href="{% url 'allcars' %}">Cars</a></br>
+      <a href="{% url 'searchmycar' %}">Book</a></br>
+    </div>
+
+  </div>
+
+</body>
+
+</html>

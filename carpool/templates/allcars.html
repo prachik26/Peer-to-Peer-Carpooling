@@ -1,0 +1,188 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <title>Cars</title>
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Kalam' rel='stylesheet'>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{% static 'styles/home.css'%}">
+  <link rel="stylesheet" type="text/css" href="{% static 'styles/login.css'%}">
+  <script src="{% static 'js/home.js'%}"></script>
+  <style>
+    body {
+
+      justify-content: center;
+      align-items: center;
+      background-color: #f2f1f8;
+      background: white;
+    }
+
+    .row {
+      /* border: 1px solid black; */
+      margin: 0 auto;
+      padding: 5px;
+      text-align: center;
+      width: 100%;
+      /* border: 1px solid black; */
+      /* grid-template-columns: auto auto auto auto; */
+      /* grid-gap: 10px; */
+      margin-top: 4%;
+
+    }
+
+    .box-element-product {
+      display: inline-block;
+    }
+
+    .row .box-element-product {
+      border: solid rgba(70, 70, 70, 0.419) 1px;
+      border-radius: 2px;
+      width: 350px;
+      height: 370px;
+      text-align: center;
+      display: inline-block;
+      border: 1px solid rgb(0, 0, 0);
+      padding: 10px 10px;
+      vertical-align: middle;
+      margin-left: 15px;
+      margin-bottom: 20px;
+    }
+
+    .box-element-product img {
+      /*width:300px;
+        height: 200px;*/
+      width: 100%;
+      height: 200px;
+      -webkit-box-shadow: -1px -3px 5px -2px rgba(214, 214, 214, 1);
+      -moz-box-shadow: -1px -3px 5px -2px rgba(214, 214, 214, 1);
+      box-shadow: -1px -3px 5px -2px rgba(214, 214, 214, 1);
+    }
+
+    .box-element-product button {
+      width: 100%;
+      margin-top: 10px;
+      background: #09333f;
+      color: white;
+    }
+
+
+    .dashboard1 {
+      background: #b7daf5;
+      margin-top: -8px;
+      padding: 10px;
+      color: white;
+    }
+
+    .cssanimation, .cssanimation span {
+      animation-duration: 0.8s;
+      animation-fill-mode: both;
+    }
+
+    .cssanimation span { display: inline-block }
+
+    .fadeInBottom { animation-name: fadeInBottom }
+    @keyframes fadeInBottom {
+      from {
+          opacity: 0;
+          transform: translateY(100%);
+      }
+      to { opacity: 1 }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="topnav" id="myTopnav">
+    <ul>
+      <div id="name">
+        <h1>Car Pooling System</h1>
+      </div>
+    </ul>
+    <ul id="rest">
+      <ul><a href="{% url 'home' %}" class="active">Home</a></ul>
+      <ul><a href="{% url 'searchmycar' %}">Book Your Car</a></ul>
+
+      {% if user.is_authenticated %}
+      <ul><a href="{% url 'dashboard' %}">Dashboard</a></ul>
+      <ul><a href="{% url 'allcars' %}">Cars</a></ul>
+      <ul><a href="{% url 'mycar_list' %}">My Cars</a></ul>
+      <ul><a href="{% url 'logout' %}">Logout</a></ul>
+      {% else %}
+      <ul><a href="{% url 'allcars' %}">Cars</a></ul>
+      <ul><a href="{% url 'register' %}">Register</a></ul>
+      <ul><a href="{% url 'login' %}">Login</a></ul>
+      <ul><a href="{% url 'contact' %}">Contact us</a></ul>
+      {% endif %}
+
+    </ul>
+  </div>
+
+  <div class="dashboard1">
+    <h3>CAR DETAILS</h3>
+  </div>
+
+
+  <div class="cssanimation sequence fadeInBottom">
+
+    <div class="row">
+      {% for mycar in mycars %}
+      <div class="box-element-product">
+  
+        <img class="thumbnail" src="{{mycar.imageURL}}">
+        <h6><strong>{{mycar.company}} {{mycar.car_name}}</strong></h6>
+        <h6>Rs {{mycar.price}}/- per day</h6>
+        <h6>{{mycar.from_place}}-{{mycar.to_place}}</h6>
+        {% if user.is_authenticated %}
+        <a href="{% url 'cardetails' mycar.pk %}"><button name="book_car_{{mycar.pk}}">Book This Car</button></a>
+        {% else %}
+        <a href="{% url 'login' %}?next={% url 'cardetails' mycar.pk %}"><button name="book_car_{{mycar.pk}}">Book This Car</button></a>
+        {% endif %}
+  
+        <!--<a href="{% url 'cardetails' mycar.pk %}">
+          <button name="book_car_{{mycar.pk}}">Book This Car</button>
+        </a>-->
+  
+      </div>
+      {% endfor %}
+    </div>
+  
+
+  </div>
+
+
+
+
+  
+
+  <div class="footer">
+    <div class="section1">
+      <h3>Contact us</h3>
+      <i class="fa fa-home">Address No: XXXXXXX Street</i></br>
+      <i class="fa fa-phone">Mobile: 1234567890</i></br>
+      <i class="fa fa-envelope">Email: abc@gmail.com</i></br>
+    </div>
+
+
+    <div class="section1">
+      <h3>Project Links</h3>
+      <a href="{% url 'home' %}">Home</a></br>
+      <a href="{% url 'contact' %}">Contact</a></br>
+      <a href="{% url 'login' %}">Login</a></br>
+      <a href="{% url 'register' %}">Register</a></br>
+    </div>
+
+  </div>
+</body>
+
+</html>

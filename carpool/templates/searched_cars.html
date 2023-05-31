@@ -1,0 +1,196 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Kalam' rel='stylesheet'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <title>Book Your Car</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/home.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/registration.css'%}">
+
+    <style>
+        body{
+            min-height: 100%;
+        }
+        #add {
+            margin-top: 10px;
+            width: 100%;
+            background-color: #09333f;
+            color: white;
+            padding: 15px 0;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .title {
+            font-size: 32px;
+            font-weight: 800;
+            line-height: 50px;
+            text-align: center;
+            color: #7d7d81;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        .parentDiv {
+            /* display: flex; */
+            /* justify-content: space-between; */
+            align-items: center;
+            margin: 0 auto;
+            /* border: 1px solid black; */
+            padding: 20px;
+            width: 90%;
+        }
+
+        .content1 {
+            display: flex;
+            align-items: center;
+            width: 70%;
+            padding: 15px;
+            border: 1px solid #ccc;
+            margin: 0 auto;
+            /* margin-bottom: 10px; */
+        }
+
+        .content1 img {
+            height: 200px;
+            width: 330px;
+            margin: 0 auto;
+        }
+
+
+        .content1 button {
+            display: inline-block;
+            padding: 10px;
+            background-color: #50a0bb;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 0 auto;
+            vertical-align: middle;
+            width: 150px;
+
+        }
+
+        .content1 button:hover {
+            background-color: #31464d;
+        }
+
+        .content1 p {
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0 auto;
+        }
+
+        footer {
+
+            position: relative;
+            padding: 10px 10px 0px 10px;
+            bottom: 0;
+            width: 100%;
+            background: rgb(117, 174, 199);
+            padding: 30px;
+            text-decoration: none;
+            height: 250px;
+            color: #FFFFFF;
+            /* margin-top: 290px; */
+             
+        }
+
+        footer a{
+        border-bottom: 1px solid rgb(151, 140, 140);
+        padding-bottom: 5px;
+        text-decoration: none;
+        color: white;
+        padding-top: 3px;
+        }
+
+        footer a:hover{
+        color:#565665 ;
+        text-decoration: none;
+        }  
+
+    </style>
+</head>
+
+<body>
+    <div class="topnav" id="myTopnav">
+        <ul>
+            <div id="name">
+                <h1>Car Pooling System</h1>
+            </div>
+        </ul>
+        <ul id="rest">
+            <ul><a href="{% url 'home' %}" class="active">Home</a></ul>
+            <ul><a href="{% url 'searchmycar' %}">Book Your Car</a></ul>
+            {% if user.is_authenticated %}
+            <ul><a href="{% url 'dashboard' %}">Dashboard</a></ul>
+            <ul><a href="{% url 'allcars' %}">Cars</a></ul>
+            <ul><a href="{% url 'mycar_list' %}">My Cars</a></ul>
+            <ul><a href="{% url 'logout' %}">Logout</a></ul>
+            {% else %}
+            <ul><a href="{% url 'allcars' %}">Cars</a></ul>
+            <ul><a href="{% url 'register' %}">Register</a></ul>
+            <ul><a href="{% url 'login' %}">Login</a></ul>
+            <ul><a href="{% url 'contact' %}">Contact us</a></ul>
+            {% endif %}
+
+        </ul>
+
+    </div>
+
+
+    <div class="parentDiv">
+        {% for car in cars %}
+        <div class="content1">
+            <img src="{{car.imageURL}}">
+            <p>Owner Name: {{car.cust.fname}} <br> Contact No.: {{car.cust.mobile}} <br> Car Name: {{car.car_name}} <br>
+                Company: {{car.company}} <br> Type: {{car.car_type}} <br>
+                Price Per Day: {{car.price}}/-<br></p>
+            <a href="{% url 'cardetails' car.pk %}">
+                <button name="book_car_{{car.pk}}">Book Now</button>
+            </a>
+
+        </div>
+        {% empty %}
+        <p>
+            <center>No cars are available!</center><br><br><br><br><br><br><br><br><br><br><br><br>
+        </p>
+        {% endfor %}
+    </div>
+
+
+    <footer>
+        <div class="section1">
+            <h3>Contact us</h3>
+            <i class="fa fa-home">Address No: XXXXXXX Street</i></br>
+            <i class="fa fa-phone">Mobile: 1234567890</i></br>
+            <i class="fa fa-envelope">Email: abc@gmail.com</i></br>
+        </div>
+        <div class="section1">
+            <h3>Project Links</h3>
+            <a href="{% url 'home' %}">Home</a></br>
+            <a href="{% url 'contact' %}">Contact</a></br>
+            <a href="{% url 'login' %}">Login</a></br>
+            <a href="{% url 'register' %}">Register</a></br>
+        </div>
+
+</body>
+
+
+</html>

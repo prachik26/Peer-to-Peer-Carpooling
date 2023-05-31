@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Login Details</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Kalam' rel='stylesheet'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/home.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/login.css'%}">
+    <script src="{% static 'js/home.js'%}"></script>
+
+</head>
+<style>
+
+</style>
+
+<body>
+
+    <div class="topnav" id="myTopnav">
+        <ul>
+            <div id="name">
+                <h1>Car Pooling System</h1>
+            </div>
+        </ul>
+        <ul id="rest">
+            <ul><a href="http://127.0.0.1:8000/" class="active">Home</a></ul>
+            <ul><a href="http://127.0.0.1:8000/searchmycar">Book Your Car</a></ul>
+            <ul><a href="http://127.0.0.1:8000/allcars">Cars</a></ul>
+            <ul><a href="http://127.0.0.1:8000/register">Register</a></ul>
+            <ul><a href="http://127.0.0.1:8000/login">Login</a></ul>
+            <ul><a href="http://127.0.0.1:8000/contact">Contact us</a></ul>
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+
+        </ul>
+    </div>
+
+    <div>
+        {% if messages %}
+        {% for message in messages %}
+
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <center>{{ message }}</center>
+
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+
+    <div class="cssanimation sequence fadeInBottom">
+
+        <div>
+            <form action="" method="post">
+                {% csrf_token %}
+                <h3>Login To Your Account</h3>
+    
+                <label for="username">Username</label>
+                <input type="text" placeholder="Username" name="usern">
+    
+                <label for="password">Password</label>
+                <input type="password" placeholder="Password" name="password">
+    
+                <button>LOG IN</button></br></br>
+                <p style="text-align: center;">Or <a href="http://127.0.0.1:8000/register" id="link">REGISTER</a> here</p>
+            </form></br>
+        </div>
+
+    </div>
+
+    
+
+    <div class="footer">
+        <div class="section1">
+            <h3>Contact us</h3>
+            <i class="fa fa-home">Address No: XXXXXXX Street</i></br>
+            <i class="fa fa-phone">Mobile: 1234567890</i></br>
+            <i class="fa fa-envelope">Email: abc@gmail.com</i></br>
+        </div>
+
+
+        <div class="section1">
+            <h3>Project Links</h3>
+            <a href="{% url 'home' %}">Home</a></br>
+            <a href="{% url 'contact' %}">Contact</a></br>
+            <a href="{% url 'login' %}">Login</a></br>
+            <a href="{% url 'register' %}">Register</a></br>
+        </div>
+
+    </div>
+</body>
+
+</html>
